@@ -1,0 +1,20 @@
+header:
+  version: 20
+  includes:
+    - local-user.yaml
+
+distro: poky
+machine: qemux86-64
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/poky
+    branch: scarthgap
+    path: sources/poky
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  meta-foo:
+    path: meta-foo

@@ -1,0 +1,9 @@
+header:
+  version: 20
+
+local_conf_header:
+  user: |
+    INHERIT += "extrausers"
+    EXTRA_USERS_PARAMS = "useradd -p '$6$4UjuYTQz1qv2eOi4$Eg03o1fLNecmQh0w7Uve2kBL9kFRdSb0QMjra8lCT.kMgKNfrd2YicI8yAg3h9BzI7a6Uv1rGF4RulwkLAF9T.' default;"
+    EXTRA_IMAGE_FEATURES += "allow-root-login empty-root-password debug-tweaks"
+    IMAGE_INSTALL:append = " base-passwd openssh"

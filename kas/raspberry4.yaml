@@ -1,0 +1,24 @@
+header:
+    version: 18
+    includes:
+      - local-user.yaml
+      - foo.yaml
+      - oe.yaml
+      - rpi4.yaml
+
+machine: raspberrypi4-64
+
+distro: poky
+
+target:
+    - core-image-minimal
+
+repos:
+    poky:
+      url: https://git.yoctoproject.org/poky
+      branch: scarthgap
+      path: sources/poky
+      layers:
+        meta:
+        meta-poky:
+        meta-yocto-bsp:

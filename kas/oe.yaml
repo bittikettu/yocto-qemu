@@ -1,0 +1,14 @@
+header:
+  version: 20
+
+repos:
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    branch: scarthgap
+    path: sources/poky-scarthgap
+    layers:
+      meta-oe:
+
+local_conf_header:
+  meta-oe: |
+    IMAGE_INSTALL:append = " screen jq jansson"

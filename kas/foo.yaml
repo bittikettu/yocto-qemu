@@ -1,0 +1,10 @@
+header:
+  version: 20
+
+repos:
+  meta-foo:
+    path: meta-foo
+
+local_conf_header:
+  meta-foo: |
+    IMAGE_INSTALL:append = " nano"

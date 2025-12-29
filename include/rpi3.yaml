@@ -1,0 +1,26 @@
+header:
+    version: 18
+
+repos:
+    meta-raspberrypi:
+        url: https://github.com/agherzan/meta-raspberrypi.git
+        path: sources/meta-raspberrypi
+        branch: scarthgap
+
+    meta-lts-mixins:
+        url: https://git.yoctoproject.org/meta-lts-mixins
+        path: sources/meta-lts-mixins
+        commit: 66ceeebd047d7fdfc8668b300319a76da8ae257d
+
+local_conf_header:
+    raspberrypi: |
+        RPI_USE_U_BOOT = "1"
+        ENABLE_UART = "1"
+        RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1"
+        IMAGE_INSTALL:append = " kernel-image kernel-devicetree"
+        IMAGE_FSTYPES:append = " rpi-sdimg"
+        KERNEL_IMAGETYPE = "uImage"
+        KERNEL_IMAGETYPE_UBOOT = "uImage"
+        RPI_KERNEL_IMAGE = "uImage"
+        PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
+        BOOT_SPACE = "131072"

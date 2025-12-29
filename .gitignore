@@ -1,4 +1,2 @@
-build
-sources
-build/*
-sources/*
+build/**
+sources/**

@@ -4,6 +4,6 @@ header:
 local_conf_header:
   user: |
     INHERIT += "extrausers"
-    EXTRA_USERS_PARAMS = "useradd -p '$6$4UjuYTQz1qv2eOi4$Eg03o1fLNecmQh0w7Uve2kBL9kFRdSb0QMjra8lCT.kMgKNfrd2YicI8yAg3h9BzI7a6Uv1rGF4RulwkLAF9T.' default;"
+    EXTRA_USERS_PARAMS = "useradd -p '\$6\$N8q8yHQQfXgZ/6hy\$q8QcQ3NnSRNol3N86IPEQmfnWbyhaqpR7y4I7SFq1D19UdY9dN.ZWHMbVOS5GDu.VCsFXq9tLQ4l3vM6C3MKW/' default;"
     EXTRA_IMAGE_FEATURES += "allow-root-login empty-root-password debug-tweaks"
     IMAGE_INSTALL:append = " base-passwd openssh"

@@ -7,4 +7,4 @@ repos:
 
 local_conf_header:
   meta-foo: |
-    IMAGE_INSTALL:append = " nano fake-hwclock"
+    IMAGE_INSTALL:append = " nano fake-hwclock hello"

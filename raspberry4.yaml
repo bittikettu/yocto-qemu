@@ -1,12 +1,16 @@
 header:
-  version: 20
+  version: 18
   includes:
-    - local-user.yaml
-    - foo.yaml
-    - oe.yaml
+    - include/local-user.yaml
+    - include/foo.yaml
+    - include/oe.yaml
+    - include/rpi4.yaml
 
 distro: poky
-machine: qemux86-64
+machine: raspberrypi4-64
+
+target:
+  - core-image-minimal
 
 repos:
   poky:
@@ -17,4 +21,3 @@ repos:
       meta:
       meta-poky:
       meta-yocto-bsp:
-

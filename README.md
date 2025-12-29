@@ -2,6 +2,15 @@
 
 This project is a learning platform for Yocto and Kas, demonstrating how to add custom layers, create recipes, and modify existing system components.
 
+Google Antigravity + NotebookLM with generated podcasts based on multiple Youtube videos and blogposts have been used to create this project.
+
+Huge thanks to:
+- https://github.com/YoseliSAS/yocto-blog-posts
+- https://www.yoseli.org/building-a-robust-raspberry-pi-4-system-with-kas-yocto-mender-and-squashfs
+- https://www.youtube.com/watch?v=8M8U1EgnUVw
+- https://embeddeduse.com/2020/05/26/qt-embedded-systems-1-build-linux-image-with-yocto/
+- https://www.youtube.com/@LeonAnavi
+
 ## meta-foo Layer
 
 The `meta-foo` layer is a custom layer designed to demonstrate:
@@ -11,7 +20,10 @@ The `meta-foo` layer is a custom layer designed to demonstrate:
 
 ### Key Features
 - **Custom MOTD**: Replaces the default system message of the day (motd) with a custom "Otter Side" message.
-- **Example Recipes**: Includes placeholders and examples for learning purposes.
+- **Fake HW Clock**: Saves and restores time on boot/shutdown for devices without RTC (e.g. Raspberry Pi).
+- **Example Recipes**:
+    - **Hello Derp**: A simple C-based "Hello World" application (`recipes-derp`).
+    - **Example Recipe**: Demonstrates build-time banners (`recipes-example`).
 
 ## Usage
 
@@ -21,6 +33,13 @@ This project uses [kas](https://github.com/siemens/kas) for configuration and bu
 To build the default QEMU image:
 ```bash
 kas build kas/qemu.yaml
+```
+
+To build for Raspberry Pi:
+```bash
+kas build kas/raspberry3.yaml
+# or
+kas build kas/raspberry4.yaml
 ```
 
 ### entering Shell

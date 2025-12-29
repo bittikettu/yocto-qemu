@@ -1,0 +1,16 @@
+[Unit]
+Description=Fake Hardware Clock
+DefaultDependencies=no
+After=sysinit.target
+Before=time-sync.target shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/fake-hwclock.sh start
+ExecStop=/usr/bin/fake-hwclock.sh stop
+StandardOutput=journal+console
+
+[Install]
+WantedBy=sysinit.target

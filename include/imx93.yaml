@@ -1,0 +1,44 @@
+header:
+    version: 18
+
+repos:
+    meta-freescale:
+        url: https://github.com/Freescale/meta-freescale
+        branch: scarthgap
+        path: sources/meta-freescale
+
+    meta-imx:
+        url: https://github.com/nxp-imx/meta-imx
+        branch: scarthgap-6.6.52-2.2.2
+        path: sources/meta-imx
+        layers:
+            meta-imx-bsp:
+            meta-imx-sdk:
+
+    meta-freescale-distro:
+        url: https://github.com/Freescale/meta-freescale-distro
+        path: sources/meta-freescale-distro
+        branch: scarthgap
+
+    meta-arm:
+        url: https://git.yoctoproject.org/meta-arm
+        path: sources/meta-arm
+        branch: scarthgap
+        layers:
+            meta-arm:
+            meta-arm-toolchain:
+
+
+local_conf_header:
+    imx93: |
+        CONF_VERSION = "2"
+
+        # Use NXP EULA packages
+        ACCEPT_FSL_EULA = "1"
+
+        # Enable systemd (recommended)
+        DISTRO_FEATURES:append = " systemd usrmerge"
+        VIRTUAL-RUNTIME_init_manager = "systemd"
+
+        # Serial console
+        SERIAL_CONSOLES = "115200;ttyLP0"

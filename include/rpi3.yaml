@@ -16,7 +16,9 @@ local_conf_header:
     raspberrypi: |
         RPI_USE_U_BOOT = "1"
         ENABLE_UART = "1"
-        RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1"
+        ENABLE_I2C = "1"
+        VC4DTBO = "vc4-fkms-v3d"
+        RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1 \n dtoverlay=rpi-ft5406"
         IMAGE_INSTALL:append = " kernel-image kernel-devicetree linux-firmware-rpidistro-bcm43430 linux-firmware-rpidistro-bcm43455 wpa-supplicant iw kernel-modules fake-hwclock"
         DISTRO_FEATURES:append = " wifi"
         IMAGE_FSTYPES:append = " rpi-sdimg"

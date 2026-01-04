@@ -12,6 +12,11 @@ repos:
         path: sources/meta-lts-mixins
         commit: 66ceeebd047d7fdfc8668b300319a76da8ae257d
 
+    meta-wayland:
+        url: https://codeberg.org/flk/meta-wayland.git
+        path: sources/meta-wayland
+        branch: scarthgap
+
 local_conf_header:
     raspberrypi: |
         RPI_USE_U_BOOT = "1"
@@ -20,7 +25,7 @@ local_conf_header:
         VC4DTBO = "vc4-fkms-v3d"
         RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1 \n dtoverlay=rpi-ft5406"
         IMAGE_INSTALL:append = " kernel-image kernel-devicetree linux-firmware-rpidistro-bcm43430 linux-firmware-rpidistro-bcm43455 wpa-supplicant iw kernel-modules fake-hwclock"
-        DISTRO_FEATURES:append = " wifi"
+        DISTRO_FEATURES:append = " wifi pam"
         IMAGE_FSTYPES:append = " rpi-sdimg"
         KERNEL_IMAGETYPE = "uImage"
         KERNEL_IMAGETYPE_UBOOT = "uImage"

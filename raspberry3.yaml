@@ -10,7 +10,7 @@ distro: poky
 machine: raspberrypi3
 
 target:
-  - core-image-minimal
+  - core-image-weston
 
 repos:
   poky:

@@ -32,20 +32,25 @@ This project uses [kas](https://github.com/siemens/kas) for configuration and bu
 ### Building
 To build the default QEMU image:
 ```bash
-kas build kas/qemu.yaml
+kas build qemu.yaml
 ```
 
 To build for Raspberry Pi:
 ```bash
-kas build kas/raspberry3.yaml
+kas build raspberry3.yaml
 # or
-kas build kas/raspberry4.yaml
+kas build raspberry4.yaml
+```
+
+To build for i.MX93 EVK:
+```bash
+kas build imx93evk.yaml
 ```
 
 ### entering Shell
 To enter the BitBake environment shell:
 ```bash
-kas shell kas/qemu.yaml
+kas shell qemu.yaml
 ```
 
 ### Running QEMU

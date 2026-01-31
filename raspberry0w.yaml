@@ -1,0 +1,23 @@
+header:
+  version: 18
+  includes:
+    - include/local-user.yaml
+    - include/foo.yaml
+    - include/oe.yaml
+    - include/rpi0w.yaml
+
+distro: poky
+machine: raspberrypi0-wifi
+
+target:
+  - core-image-minimal
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/poky
+    branch: scarthgap
+    path: sources/poky
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:

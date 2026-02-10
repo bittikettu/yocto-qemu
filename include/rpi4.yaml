@@ -28,7 +28,7 @@ local_conf_header:
         CAN0_INTERRUPT_PIN = "12"
         CAN1_INTERRUPT_PIN = "16"
         VC4DTBO = "vc4-fkms-v3d"
-        RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1 \n dtoverlay=rpi-ft5406"
+        RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1 \n display_auto_detect=1"
         IMAGE_INSTALL:append = " kernel-image kernel-devicetree linux-firmware-rpidistro-bcm43455 linux-firmware-rpidistro-bcm43456 wpa-supplicant iw kernel-modules fake-hwclock can-utils libsocketcan"
         DISTRO_FEATURES:append = " wifi pam"
         RPI_USE_U_BOOT = "1"

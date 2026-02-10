@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -8,11 +9,22 @@
 #include <sys/socket.h>
 #include <linux/can.h>
 #include <linux/can/raw.h>
+#include <errno.h>
 #include "raylib.h"
 
 #define ID_CAN_POWERTRAIN 0x105
+#define ID_CAN_MEDIA 0x3F6
+#define ID_CAN_CHASSIS 0x12D
 #define CAN_INTERFACE "can0"
 #define TPS_MAX 0xFA
+
+const uint8_t g_MSG_CAN_VOLUP[] = {0x02, 0x01, 0x00, 0x01, 0x00};
+const uint8_t g_MSG_CAN_VOLDOWN[] = {0x02, 0x02, 0x00, 0x02, 0x00};
+const uint8_t g_MSG_CAN_MUTE[] = {0x02, 0x40, 0x00, 0x00, 0x00};
+const uint8_t g_MSG_CAN_LOCK[] = {0x0F, 0x07, 0x20, 0xAA};
+const uint8_t g_MSG_CAN_UNLOCK[] = {0x0F, 0x07, 0x50, 0x55};
+
+void canSend(int fd, uint32_t id, uint8_t len, const uint8_t *data);
 
 int main(void)
 {
@@ -77,28 +89,28 @@ int main(void)
 
         if (CheckCollisionPointRec(inputPoint, btnVolUp) && isReleased) 
         {
-            // TODO
+            canSend(s, ID_CAN_MEDIA, sizeof(g_MSG_CAN_VOLUP) / sizeof(g_MSG_CAN_VOLUP[0]), g_MSG_CAN_VOLUP);
         }
 
         if (CheckCollisionPointRec(inputPoint, btnVolDown) && isReleased) 
         {
-            // TODO
+            canSend(s, ID_CAN_MEDIA, sizeof(g_MSG_CAN_VOLDOWN) / sizeof(g_MSG_CAN_VOLDOWN[0]), g_MSG_CAN_VOLDOWN);
         }
 
         if (CheckCollisionPointRec(inputPoint, btnMute) && isReleased) 
         {
             isMuted = !isMuted;
-            // TODO
+            canSend(s, ID_CAN_MEDIA, sizeof(g_MSG_CAN_MUTE) / sizeof(g_MSG_CAN_MUTE[0]), g_MSG_CAN_MUTE);
         }
 
         if (CheckCollisionPointRec(inputPoint, btnLock) && isReleased) 
         {
-            // TODO
+            canSend(s, ID_CAN_CHASSIS, sizeof(g_MSG_CAN_LOCK) / sizeof(g_MSG_CAN_LOCK[0]), g_MSG_CAN_LOCK);
         }
 
         if (CheckCollisionPointRec(inputPoint, btnUnlock) && isReleased) 
         {
-            // TODO
+            canSend(s, ID_CAN_CHASSIS, sizeof(g_MSG_CAN_UNLOCK) / sizeof(g_MSG_CAN_UNLOCK[0]), g_MSG_CAN_UNLOCK);
         }
 
         BeginDrawing();
@@ -173,4 +185,23 @@ int main(void)
     CloseWindow();
     close(s);
     return 0;
+}
+
+void canSend(int fd, uint32_t id, uint8_t len, const uint8_t *data) 
+{   
+    struct can_frame frame = {0};
+    frame.can_id = id;
+    if (len > 8) len = 8;
+    frame.can_dlc = len;
+
+    for (int i = 0; i < len; i++)
+        frame.data[i] = data[i];
+
+    if (write(fd, &frame, sizeof(struct can_frame)) < 0)
+    {
+        if (errno == EAGAIN || errno == EWOULDBLOCK)
+            printf("CAN bus tx buffer full - message dropped!\n");
+        else
+            perror("CAN bus write error");
+    }
 }

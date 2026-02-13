@@ -12,29 +12,21 @@ repos:
         path: sources/meta-lts-mixins
         commit: 66ceeebd047d7fdfc8668b300319a76da8ae257d
 
-    meta-wayland:
-        url: https://codeberg.org/flk/meta-wayland.git
-        path: sources/meta-wayland
-        branch: scarthgap
-
 local_conf_header:
     raspberrypi: |
         RPI_USE_U_BOOT = "1"
         ENABLE_UART = "1"
-        ENABLE_I2C = "1"
         ENABLE_SPI_BUS = "1"
         ENABLE_CAN = "1"
         CAN_OSCILLATOR="8000000"
         CAN0_INTERRUPT_PIN = "12"
         CAN1_INTERRUPT_PIN = "16"
-        VC4DTBO = "vc4-fkms-v3d"
-        RPI_EXTRA_CONFIG = "hdmi_force_hotplug=1 \n display_auto_detect=1"
-        IMAGE_INSTALL:append = " kernel-image kernel-devicetree linux-firmware-rpidistro-bcm43455 linux-firmware-rpidistro-bcm43456 wpa-supplicant iw kernel-modules fake-hwclock can-utils libsocketcan"
-        DISTRO_FEATURES:append = " wifi pam"
-        RPI_USE_U_BOOT = "1"
-        KERNEL_IMAGETYPE = "Image"
-        RPI_KERNEL_IMAGE = "Image"
+        IMAGE_INSTALL:append = " kernel-image kernel-devicetree linux-firmware-rpidistro-bcm43430 linux-firmware-rpidistro-bcm43455 wpa-supplicant iw kernel-modules fake-hwclock can-utils"
+        DISTRO_FEATURES:append = " wifi"
+        IMAGE_FSTYPES:remove = " rpi-sdimg"
+        KERNEL_IMAGETYPE = "uImage"
+        KERNEL_IMAGETYPE_UBOOT = "uImage"
+        RPI_KERNEL_IMAGE = "uImage"
         PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
         BOOT_SPACE = "131072"
         LICENSE_FLAGS_ACCEPTED:append = " synaptics-killswitch"
-

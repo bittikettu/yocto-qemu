@@ -7,5 +7,6 @@ repos:
 
 local_conf_header:
   meta-foo: |
-    IMAGE_INSTALL:append = " nano fake-hwclock hello"
+    IMAGE_INSTALL:append = " nano fake-hwclock hello raylib hello-raylib can-bus-raylib"
     INIT_MANAGER = "systemd"
+    INHERIT += "rm_work"

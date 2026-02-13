@@ -4,13 +4,13 @@ header:
     - include/local-user.yaml
     - include/foo.yaml
     - include/oe.yaml
-    - include/rpi4.yaml
+    - include/rpi1.yaml
 
 distro: poky
-machine: raspberrypi4-64
+machine: raspberrypi
 
 target:
-  - core-image-weston
+  - core-image-minimal
 
 repos:
   poky:

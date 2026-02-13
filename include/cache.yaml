@@ -3,8 +3,8 @@ header:
 
 local_conf_header:
   local_dirs: |
-    DL_DIR = "/home/juha_v/temp/download_master"
-    SSTATE_DIR = "/home/juha_v/temp/sstate-cache_master"
+    DL_DIR = "${HOME}/temp/download_master"
+    SSTATE_DIR = "${HOME}/temp/sstate-cache_master"
 
   standard: |
     SDKMACHINE = "x86_64"
